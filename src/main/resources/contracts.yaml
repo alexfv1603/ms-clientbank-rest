@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: Rest Client
+  description: Rest Client
+  version: 1.0.0
+servers:
+- url: https://localhost:8080
+tags:
+- name: Client
+  description: Agrupamiento del Controller Client
+paths:
+  /client:
+    get:
+      tags:
+      - Client
+      summary: Permite retornar un listado de clientes
+      description: |
+        ### Acerca de la funcionalidad expuesta
+        Se puede enriquecer mas el servicio.
+      operationId: client
+      responses:
+        "200":
+          description: Se obtuvo el listado de clientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clients'
+    post:
+      tags:
+      - ClientPost
+      summary: Permite guardar los datos del cliente
+      description: |
+        ### Acerca de la funcionalidad expuesta
+        Se puede enriquecer mas el servicio.
+      operationId: clientPost
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+      responses:
+        "200":
+          description: Se guardo cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+components:
+  schemas:
+    Clients:
+      type: array
+      items:
+          properties:
+            typeClient:
+              type: string
+              example: "Personal"
+            typeDocument:
+              type: string
+              example: "DNI"
+            numberDocument:
+              type: string
+              example: "47263812"
+    Client:
+      required:
+       - typeClient
+      properties:
+        typeClient:
+          type: string
+          example: "Personal"
+        typeDocument:
+          type: string
+          example: "DNI"
+        numberDocument:
+          type: string
+          example: "47263812"
+    ClientResponse:
+      properties:
+        sucsess:
+          type: boolean
+          example: true
